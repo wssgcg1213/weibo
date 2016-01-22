@@ -9,11 +9,12 @@ export default class MainPage extends React.Component {
     }
 
     render () {
-        let list = this.props.data.map((cellObj, i) =>
-            (<Cell key={cellObj.id} data={cellObj} />));
+
         return (<main className="main">
             <ScrollFresh />
-            {list}
+            {this.props.data.map((cellObj, i) =>(
+                    <Cell key={cellObj.id} data={cellObj} />
+                ))}
 
         </main>);
     }

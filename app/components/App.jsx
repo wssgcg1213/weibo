@@ -57,7 +57,10 @@ export default class App extends React.Component {
             time: status['created_at'],
             content: status['text'],
             source: status['source'],
-            imgList: status['pic_urls'].map(o => o['thumbnail_pic'])
+            imgList: status['pic_urls'].map(o => ({
+                thumbnail: o['thumbnail_pic'],
+                large: o['thumbnail_pic'].replace('thumbnail', 'large')
+            }))
         }));
         return (<div className="container">
             <Header userinfo={this.state.userinfo}/>

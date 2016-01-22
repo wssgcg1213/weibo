@@ -1,4 +1,6 @@
 import React from 'react';
+
+import Gallery from './Gallery.jsx';
 require('./Cell.less');
 
 export default class Cell extends React.Component {
@@ -7,9 +9,7 @@ export default class Cell extends React.Component {
   }
 
   render () {
-    let imgList = this.props.data.imgList.map((src, id) => (
-        <img className="content-img" key={id} src={src} />
-    ));
+
     let elegantTime = Cell.formatTime(new Date(this.props.data.time));
     return (<article className="cell">
       <img className="head" src={this.props.data.head} alt="head"/>
@@ -19,7 +19,7 @@ export default class Cell extends React.Component {
           <span className="time">{elegantTime.toString()}</span>
         </div>
         <p className="cell-content" dangerouslySetInnerHTML={{__html: Cell.addLinks(this.props.data.content)}} />
-        {imgList}
+        <Gallery imgList={this.props.data.imgList}/>
         <div className="cell-footer">
 
           <span className="cell-source" dangerouslySetInnerHTML={{__html: `来自 ${this.props.data.source}`}} />
