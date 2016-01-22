@@ -14,6 +14,7 @@ export default class MainPage extends React.Component {
         return (<main className="main">
             <ScrollFresh />
             {list}
+
         </main>);
     }
 }
