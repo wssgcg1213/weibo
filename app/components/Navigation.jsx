@@ -1,19 +1,19 @@
 import React from 'react';
-import './Navigation.less';
-
+import '../style/Navigation.less';
 
 export default class Navigation extends React.Component {
   constructor(...args) {
     super(...args);
   }
+  changePage(pageName) {
 
+  }
   render () {
 
     return (<footer className="footer">
-      <div className="footer-item">1</div>
-      <div className="footer-item">2</div>
-      <div className="footer-item">3</div>
-      <div className="footer-item">4</div>
+      {this.props.navigation.map((navi, id) => {
+        return <div className="footer-item" key={id}>{navi}</div>;
+      })}
     </footer>);
   }
 }

@@ -4,7 +4,7 @@
  * @Email i@zeroling.com
  */
 import React from 'react';
-import './Gallery.less';
+import '../style/Gallery.less';
 
 
 export default class Gallery extends React.Component {

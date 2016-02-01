@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Gallery from './Gallery.jsx';
-require('./Cell.less');
+require('../style/Cell.less');
 
 export default class Cell extends React.Component {
   constructor(...args) {
@@ -50,7 +50,7 @@ export default class Cell extends React.Component {
     } else if (gap < 3600 * 1000 * 24) { //less than a day
       return parseInt(gap/3600000) + ' 小时前';
     } else {
-      return parseInt(gap/24/360000) + ' 天前';
+      return parseInt(gap/24/3600000) + ' 天前';
     }
   }
 }

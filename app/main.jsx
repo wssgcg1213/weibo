@@ -1,9 +1,11 @@
+/**
+ * the file bootstrap the whole app
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.jsx';
-import 'normalize.css';
+import Weibo from './components/Weibo.jsx';
 
 ReactDOM.render(
-  <App />,
+  <Weibo />,
   document.body.appendChild(document.createElement('div'))
 );

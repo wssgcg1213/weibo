@@ -1,5 +1,5 @@
 import React from 'react';
-import './ScrollFresh.less'
+import '../style/ScrollFresh.less'
 
 export default class MainPage extends React.Component {
     constructor(...args) {
