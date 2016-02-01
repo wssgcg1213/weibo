@@ -35,4 +35,4 @@ let UserInfoStore = Object.assign({}, EventEmitter.prototype, {
     }
 });
 
-export default TimeLineStore;
+export default UserInfoStore;
