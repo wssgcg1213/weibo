@@ -221,6 +221,9 @@ export default class MainPage extends React.Component {
     scrollTo (x, y, delay) {
         this.y = y;
         if (y === 0){
+            if (!this.lastTouchEvent) {
+                this.lastTouchEvent = {};
+            }
             this.lastTouchEvent.overflow = false;
         }
         let scrollerStyle = this.scroller.style;
