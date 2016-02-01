@@ -4,16 +4,6 @@
  * @Email i@zeroling.com
  */
 import { EventEmitter } from 'events';
-import request from 'superagent';
-import __MOCK_DATA__ from 'json!../mock.json';
-function mockTimeLine () {
-    return new Promise((res, rej) => {
-        setTimeout(() => {
-            res(__MOCK_DATA__.timeline);
-        }, 2000);
-    });
-}
-
 let TimeLineStore = Object.assign({}, EventEmitter.prototype, {
     timeLine: [],
 
@@ -47,22 +37,6 @@ let TimeLineStore = Object.assign({}, EventEmitter.prototype, {
 
     removeChangeListener (cb) {
         this.removeListener('change', cb);
-    },
-
-    ajaxData (type) {
-        switch (type) {
-            case 'new':
-            case 'more':
-                break;
-            default:
-                return Promise.resolve(false);
-        }
-        return new Promise ((resolve, reject) => {
-            setTimeout(() => {
-
-                resolve(true);
-            }, 2000);
-        });
     }
 });
 

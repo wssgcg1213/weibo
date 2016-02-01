@@ -7,6 +7,7 @@ import { Dispatcher } from 'flux';
 const AppDispatcher = new Dispatcher();
 
 import TimeLineStore from '../stores/TimeLineStore';
+import UserInfoStore from '../stores/UserInfoStore';
 AppDispatcher.register(action => {
     switch (action.actionType) {
         case 'ADD_NEW_TIMELINE':
@@ -19,6 +20,10 @@ AppDispatcher.register(action => {
             TimeLineStore.emitChange();
             break;
 
+        case 'SET_USERINFO':
+            UserInfoStore.setUserInfo(action.data);
+            TimeLineStore.emitChange();
+            break;
         default:
             //no op
     }
