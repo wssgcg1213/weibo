@@ -4,7 +4,7 @@
  * @Email i@zeroling.com
  */
 import React from 'react';
-import Header from './header.jsx';
+import Header from './Header.jsx';
 import WeiboStore from '../stores/WeiboStore';
 
 export default class HeaderCtrl extends React.Component {
