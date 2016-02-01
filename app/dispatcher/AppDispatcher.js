@@ -22,7 +22,7 @@ AppDispatcher.register(action => {
 
         case 'SET_USERINFO':
             UserInfoStore.setUserInfo(action.data);
-            TimeLineStore.emitChange();
+            UserInfoStore.emitChange();
             break;
         default:
             //no op
