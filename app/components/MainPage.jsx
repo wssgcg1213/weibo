@@ -159,7 +159,7 @@ export default class MainPage extends React.Component {
                             setTimeout(() => {
                                 this.setState({pullRefresh: STATE_PULLREFRESH_VERTICAL_INIT});
                             }, 500);
-                        } else if (this.state.pullRefresh === STATE_PULLREFRESH_VERTICAL_LOADING) {
+                        } else {
                             this.setState({pullRefresh: STATE_PULLREFRESH_VERTICAL_NOMORE});
                             setTimeout(() => {
                                 this.scrollTo(0, 0, 500);
@@ -167,8 +167,6 @@ export default class MainPage extends React.Component {
                                     this.setState({pullRefresh: STATE_PULLREFRESH_VERTICAL_INIT});
                                 }, 500);
                             }, 1000);
-                        } else {
-                            // no op
                         }
                     });
                     break;
@@ -198,15 +196,13 @@ export default class MainPage extends React.Component {
                             setTimeout(() => {
                                 this.setState({pullRefreshDown: STATE_PULLREFRESH_VERTICAL_SHOW});
                             }, 500);
-                        } else if (this.state.pullRefreshDown === STATE_PULLREFRESH_VERTICAL_LOADING) {
+                        } else {
                             this.setState({pullRefreshDown: STATE_PULLREFRESH_VERTICAL_NOMORE});
                             setTimeout(() => {
                                 setTimeout(() => {
                                     this.setState({pullRefreshDown: STATE_PULLREFRESH_VERTICAL_SHOW});
                                 }, 500);
                             }, 1000);
-                        } else {
-                            // no op
                         }
                     });
                     break;
@@ -236,10 +232,19 @@ export default class MainPage extends React.Component {
 
     loadData (type) {
         console.log('request data!', type);
+        let data, count = 30;
+        if (type == 'new') {
+            data = {page: 1, count};
+        } else if (type == 'before') {
+            data = {
+                page: Math.floor(this.props.data.length / count + 1),
+                count
+            };
+        }
         return new Promise((resolve, reject) => {
             request.post('api.php')
                 .type('form')
-                .send({api: 'timeline', type})
+                .send({api: 'timeline', data: JSON.stringify(data)})
                 .end((err, res) => {
                     if (err) return resolve(false);
                     if (type === 'new') {

@@ -6,24 +6,18 @@
 import { EventEmitter } from 'events';
 let TimeLineStore = Object.assign({}, EventEmitter.prototype, {
     timeLine: [],
+    timeLineHash: {},
 
     getAll () {
         return this.timeLine;
     },
 
     addNewItemHandler (data, isNew) {
+        data = this.deduplicate(data);
         if (!isNew) {
-            if (Array.isArray(data)) {
-                this.timeLine = this.timeLine.concat(data);
-            } else {
-                this.timeLine.push(data);
-            }
+            this.timeLine = this.timeLine.concat(data);
         } else {
-            if (Array.isArray(data)) {
-                this.timeLine = data.concat(this.timeLine);
-            } else {
-                this.timeLine.unshift(data);
-            }
+            this.timeLine = data.concat(this.timeLine);
         }
     },
 
@@ -37,6 +31,31 @@ let TimeLineStore = Object.assign({}, EventEmitter.prototype, {
 
     removeChangeListener (cb) {
         this.removeListener('change', cb);
+    },
+
+    /**
+     * 去重 return arr
+     * @param newTimeLine
+     * @returns {*}
+     */
+    deduplicate (newTimeLine) {
+        if (Array.isArray(newTimeLine)) { //arr
+            return newTimeLine.filter(obj => {
+                if (!(obj.id in this.timeLineHash)) {
+                    this.timeLineHash[obj.id] = obj.id;
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        } else { //obj
+            if (!(newTimeLine.id in this.timeLineHash)) {
+                this.timeLineHash[newTimeLine.id] = newTimeLine.id;
+                return [newTimeLine];
+            } else {
+                return [];
+            }
+        }
     }
 });
 
