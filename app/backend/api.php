@@ -41,7 +41,7 @@ class Api {
         } else {
             $this->accessToken = $_SESSION['token']['access_token'];
             $this->apiType = $_POST['api'];
-            $this->postData = $_POST['data'];
+            $this->postData = isset($_POST['data']) ? $_POST['data'] : null;
         }
     }
 
